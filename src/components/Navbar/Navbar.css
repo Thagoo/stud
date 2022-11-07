@@ -1,0 +1,18 @@
+
+.stud-logo {
+    border-style: groove;
+    border-width: 2px;
+    border-color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+}
+.navBarItems {
+    margin: 15px;
+}
+
+div.dropdown-menu.show {
+    border-style: none;
+}
