@@ -2,11 +2,12 @@ import React from "react";
 import "./Navbar.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Container, Nav, Navbar, Button } from "react-bootstrap/";
-import { LinkContainer } from "react-router-bootstrap/";
-
-import { Outlet, NavLink } from "react-router-dom";
 
 class NavbarMenu extends React.Component {
+  handleLogout = () => {
+    localStorage.clear();
+    window.location.href = "./";
+  };
   render() {
     return (
       <div>
@@ -36,16 +37,13 @@ class NavbarMenu extends React.Component {
                 </Nav.Link>
               </Nav>
               <Nav>
-                <LinkContainer to="/login">
-                  <Nav.Link className="navBarItems" target="_blank">
-                    Login
-                  </Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/register">
-                  <Button className="navBarItems" variant="outline-light">
-                    Register
-                  </Button>
-                </LinkContainer>
+                <Button
+                  className="navBarItems"
+                  variant="outline-light"
+                  onClick={this.handleLogout}
+                >
+                  Logout
+                </Button>
               </Nav>
             </Navbar.Collapse>
           </Container>

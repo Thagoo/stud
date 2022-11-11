@@ -43,8 +43,6 @@ class Register extends React.Component {
   render() {
     return (
       <form action="" onSubmit={this.handleSubmit}>
-        <h1>signup</h1>
-
         <div className="mb-3">
           <label htmlFor="fname">First Name</label>
           <input
