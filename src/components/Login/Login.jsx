@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./Login.css";
 
 const Login = () => {
   const [uname, setUname] = useState("");
   const [passwd, setPasswd] = useState("");
   const [user, setUser] = useState();
-
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
-    }
-  }, []);
+  const [unameError, setUnameError] = useState("");
+  const [passwdError, setPasswdError] = useState("");
 
   // logout the user
   const handleLogout = () => {
@@ -30,14 +25,25 @@ const Login = () => {
     const response = await axios.post("http://localhost:8000/login", user);
 
     // set the state of the user
-    setUser(response.data);
-    console.log(response.data);
-    // store the user in localStorage
-    localStorage.setItem("user", JSON.stringify(response.data));
+    if (response.data == uname) {
+      setUser(response.data);
+      console.log(response.data);
+      // store the user in localStorage
+      localStorage.setItem("user", JSON.stringify(response.data));
+    } else if (response.data == "user not found") {
+      setUnameError(true);
+      //[TODO customize this]
+      alert("User not found! Please register");
+    } else {
+      alert("Password is incorrect");
+      setPasswdError(true);
+    }
   };
+  // Update the document title using the browser API    document.title = `You clicked ${count} times`;  });
   if (user) {
     window.location.href = "./";
   }
+  useEffect(() => {});
   // if there's no user, show the login form
   return (
     <form action="" onSubmit={handleSubmit}>
@@ -45,7 +51,7 @@ const Login = () => {
         <label htmlFor="uname">User Name</label>
         <input
           type="text"
-          className="form-control"
+          className={unameError ? "form-control invalid" : "form-control"}
           placeholder="User Name"
           id="uname"
           onChange={({ target }) => setUname(target.value)}
@@ -55,7 +61,7 @@ const Login = () => {
         <label htmlFor="passwd">Password</label>
         <input
           type="password"
-          className="form-control"
+          className={passwdError ? "form-control invalid" : "form-control"}
           placeholder="Password"
           id="passwd"
           onChange={({ target }) => setPasswd(target.value)}

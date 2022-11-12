@@ -9,9 +9,6 @@ import Register from "../Register/Register";
 function RegModal() {
   const [show, setShow] = useState(true);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   return (
     <>
       <Modal show={show} animation={true}>

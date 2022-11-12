@@ -42,20 +42,22 @@ app.post("/login", (req, res) => {
       if (passwd === user.passwd) {
         res.send(uname);
       } else {
-        res.send({ status: "password is incorrect" });
+        res.send("password is incorrect");
       }
     } else {
-      res.send({ status: "user not found" });
+      res.send("user not found");
     }
   });
 });
 
 app.post("/register", (req, res) => {
   const { fname, lname, uname, passwd } = req.body;
+
   //check username
   User.findOne({ uname: uname }, (err, user) => {
     if (user) {
-      res.send({ message: "User is already registerd" });
+      console.log(user);
+      res.send("exist");
     } else {
       const user = new User({
         fname,

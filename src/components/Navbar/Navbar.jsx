@@ -37,6 +37,9 @@ class NavbarMenu extends React.Component {
                 </Nav.Link>
               </Nav>
               <Nav>
+                <Nav.Link className="navBarItems" href="">
+                  {localStorage.getItem("user").replace(/^"(.+)"$/, "$1")}
+                </Nav.Link>
                 <Button
                   className="navBarItems"
                   variant="outline-light"

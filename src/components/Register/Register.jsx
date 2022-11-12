@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 class Register extends React.Component {
   constructor(props) {
@@ -12,34 +13,22 @@ class Register extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit(e) {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const { fname, lname, uname, passwd, cpasswd } = this.state;
-    console.log(fname, lname, uname, passwd, cpasswd);
+
     if (passwd !== cpasswd) {
       alert("Password don't match");
     } else {
-      fetch("http://localhost:8000/register", {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          fname,
-          lname,
-          uname,
-          passwd,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data, "userRegister");
-        });
+      const response = await axios.post(
+        "http://localhost:8000/register",
+        this.state
+      );
+      if (response.data == "exist") {
+        alert(uname + " already exist try different username");
+      }
     }
-  }
+  };
   render() {
     return (
       <form action="" onSubmit={this.handleSubmit}>
@@ -51,6 +40,7 @@ class Register extends React.Component {
             placeholder="First Name"
             id="fname"
             onChange={(e) => this.setState({ fname: e.target.value })}
+            required
           />
         </div>
         <div className="mb-3">
@@ -71,6 +61,7 @@ class Register extends React.Component {
             placeholder="User Name"
             id="uname"
             onChange={(e) => this.setState({ uname: e.target.value })}
+            required
           />
         </div>
         <div className="mb-3">
@@ -81,6 +72,7 @@ class Register extends React.Component {
             placeholder="Password"
             id="passwd"
             onChange={(e) => this.setState({ passwd: e.target.value })}
+            required
           />
         </div>
         <div className="mb-3">
@@ -91,6 +83,7 @@ class Register extends React.Component {
             placeholder="Confirm Password"
             id="cpasswd"
             onChange={(e) => this.setState({ cpasswd: e.target.value })}
+            required
           />
         </div>
         <div>
