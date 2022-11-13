@@ -8,6 +8,8 @@ class Register extends React.Component {
       fname: "",
       lname: "",
       uname: "",
+      course: "",
+      sem: "",
       passwd: "",
       cpasswd: "",
     };
@@ -15,8 +17,8 @@ class Register extends React.Component {
   }
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { fname, lname, uname, passwd, cpasswd } = this.state;
-
+    const { fname, lname, uname, course, sem, passwd, cpasswd } = this.state;
+    console.log(course, sem);
     if (passwd !== cpasswd) {
       alert("Password don't match");
     } else {
@@ -63,6 +65,43 @@ class Register extends React.Component {
             onChange={(e) => this.setState({ uname: e.target.value })}
             required
           />
+        </div>
+        <div className="mb-3">
+          <label>
+            {" "}
+            Select Course
+            <br />
+          </label>
+          <select
+            id="course"
+            value={this.state.value}
+            className="form-control"
+            onChange={(e) => this.setState({ course: e.target.value })}
+          >
+            <option value="bca"> Bachelor of Computer Applications</option>
+            <option value="bcom"> Bachelor of Commerce</option>
+            <option value="ba"> Bachelor of Arts</option>
+          </select>
+        </div>
+        <div className="mb-3">
+          <label>
+            {" "}
+            Select Semester
+            <br />
+          </label>
+          <select
+            id="sem"
+            value={this.state.value}
+            className="form-control"
+            onChange={(e) => this.setState({ sem: e.target.value })}
+          >
+            <option value="1"> 1st Semester</option>
+            <option value="2"> 2nd Semester</option>
+            <option value="3"> 3rd Semester</option>
+            <option value="4"> 4th Semester</option>
+            <option value="5"> 5th Semester</option>
+            <option value="6"> 6th Semester</option>
+          </select>
         </div>
         <div className="mb-3">
           <label htmlFor="passwd">Password</label>
