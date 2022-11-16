@@ -28,6 +28,8 @@ class Register extends React.Component {
       );
       if (response.data == "exist") {
         alert(uname + " already exist try different username");
+      } else {
+        alert(uname + " Account Succesfully created please login");
       }
     }
   };
@@ -78,6 +80,7 @@ class Register extends React.Component {
             className="form-control"
             onChange={(e) => this.setState({ course: e.target.value })}
           >
+            <option value=""> Select Course</option>
             <option value="bca"> Bachelor of Computer Applications</option>
             <option value="bcom"> Bachelor of Commerce</option>
             <option value="ba"> Bachelor of Arts</option>
@@ -95,6 +98,7 @@ class Register extends React.Component {
             className="form-control"
             onChange={(e) => this.setState({ sem: e.target.value })}
           >
+            <option value=""> Select Semester</option>
             <option value="1"> 1st Semester</option>
             <option value="2"> 2nd Semester</option>
             <option value="3"> 3rd Semester</option>

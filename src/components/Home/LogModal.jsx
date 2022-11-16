@@ -7,6 +7,9 @@ import { Button } from "react-bootstrap/";
 import Login from "../Login/Login";
 import "./Home.css";
 
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+
 function LogModal() {
   const [show, setShow] = useState(true);
 

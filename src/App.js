@@ -4,6 +4,7 @@ import Home from "./components/Home/Home";
 import LogModal from "./components/Home/LogModal";
 import RegModal from "./components/Home/RegModal";
 import React, { useState, useEffect } from "react";
+import StudyMaterials from "./components/StudyMaterials/StudyMaterialsHome";
 
 function requireAuth() {
   const loggedInUser = localStorage.getItem("user");
@@ -22,7 +23,10 @@ function App() {
           path="/"
           element={requireAuth() ? <Home /> : <LogModal />}
         />
-
+        <Route
+          path="/studymaterials"
+          element={requireAuth() ? <StudyMaterials /> : <LogModal />}
+        />
         <Route path="/register" element={<RegModal />} />
       </Routes>
     </BrowserRouter>

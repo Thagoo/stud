@@ -5,7 +5,7 @@ function Home() {
   return (
     <>
       <Navbar />
-      <h1 style={{ textAlign: `center`, margin: `5% ` }}>Hello World!</h1>
+      <h1>WIP</h1>
     </>
   );
 }

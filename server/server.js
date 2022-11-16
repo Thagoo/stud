@@ -27,6 +27,8 @@ const userSchema = new mongoose.Schema({
   fname: String,
   lname: String,
   uname: String,
+  course: String,
+  sem: String,
   passwd: String,
 });
 
@@ -35,6 +37,7 @@ const User = new mongoose.model("User", userSchema);
 //Routes
 app.post("/login", (req, res) => {
   const { uname, passwd } = req.body;
+
   //check uname
   User.findOne({ uname: uname }, (err, user) => {
     if (user) {
@@ -51,7 +54,7 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  const { fname, lname, uname, passwd } = req.body;
+  const { fname, lname, uname, course, sem, passwd } = req.body;
 
   //check username
   User.findOne({ uname: uname }, (err, user) => {
@@ -63,6 +66,8 @@ app.post("/register", (req, res) => {
         fname,
         lname,
         uname,
+        course,
+        sem,
         passwd,
       });
       user.save((err) => {

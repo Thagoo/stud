@@ -25,7 +25,7 @@ class NavbarMenu extends React.Component {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link className="navBarItems" href="">
+                <Nav.Link className="navBarItems" href="/studymaterials">
                   Study Materials
                 </Nav.Link>
                 <Nav.Link className="navBarItems" href="">

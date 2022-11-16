@@ -23,7 +23,6 @@ const Login = () => {
     const user = { uname, passwd };
     // send the uname and password to the server
     const response = await axios.post("http://localhost:8000/login", user);
-
     // set the state of the user
     if (response.data == uname) {
       setUser(response.data);
@@ -39,7 +38,7 @@ const Login = () => {
       setPasswdError(true);
     }
   };
-  // Update the document title using the browser API    document.title = `You clicked ${count} times`;  });
+
   if (user) {
     window.location.href = "./";
   }
