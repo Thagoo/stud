@@ -28,7 +28,7 @@ class NavbarMenu extends React.Component {
                 <Nav.Link className="navBarItems" href="/studymaterials">
                   Study Materials
                 </Nav.Link>
-                <Nav.Link className="navBarItems" href="">
+                <Nav.Link className="navBarItems" href="/discuss">
                   Discuss
                 </Nav.Link>
 

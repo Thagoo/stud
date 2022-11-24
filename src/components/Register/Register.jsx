@@ -15,6 +15,7 @@ class Register extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleSubmit = async (e) => {
     e.preventDefault();
     const { fname, lname, uname, course, sem, passwd, cpasswd } = this.state;
