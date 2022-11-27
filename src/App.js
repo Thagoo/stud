@@ -9,11 +9,12 @@ import Discuss from "./components/Discuss/DiscussHome";
 import Chat from "./components/Discuss/Chat";
 import io from "socket.io-client";
 
-const loggedInUser = localStorage.getItem("user").replace(/^"(.+)"$/, "$1");
+let loggedInUser = localStorage.getItem("user");
 
 function requireAuth() {
   console.log(loggedInUser);
   if (loggedInUser) {
+    loggedInUser = loggedInUser.replace(/^"(.+)"$/, "$1");
     return true;
   }
   return false;
