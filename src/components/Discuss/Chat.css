@@ -142,6 +142,10 @@
   .message__chats > p {
     font-size: 13px;
   }
+  .message_time {
+    text-align: right;
+    font-size: 12px;
+  }
   .sender__name {
     text-align: right;
   }

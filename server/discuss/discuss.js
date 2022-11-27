@@ -7,6 +7,11 @@ const { ConnectionClosedEvent } = require("mongodb");
 
 const http = createServer();
 
+let date = new Date();
+let time_h = date.getHours();
+let time_m = date.getMinutes();
+let time = `${time_h}:${time_m}`;
+
 let chatRoom = "";
 let allUsers = [];
 
@@ -24,13 +29,13 @@ socketIO.on("connection", (socket) => {
   socket.on("join_room", (data) => {
     const { username, room } = data;
     socket.join(room);
-    let time = Date.now();
 
-    socket.emit("messageRes", {
+    socketIO.in(room).emit("messageRes", {
       message: `Welcome ${username}`,
       username: username,
       id: `${socket.id}${Math.random()}`,
       sodketID: socket.id,
+      time: time,
     });
 
     chatRoom = room;

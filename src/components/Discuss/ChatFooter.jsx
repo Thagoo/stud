@@ -4,6 +4,8 @@ import { Button } from "react-bootstrap";
 
 const ChatFooter = ({ username, socket, room }) => {
   const [message, setMessage] = useState("");
+  const date = new Date();
+  const Time = date.getHours() + ":" + date.getMinutes();
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -13,21 +15,11 @@ const ChatFooter = ({ username, socket, room }) => {
         username: username,
         id: `${socket.id}${Math.random()}`,
         sodketID: socket.id,
+        time: Time,
       });
     }
     setMessage("");
   };
-
-  useEffect(() => {
-    socket.on("recieve", () => {
-      socket.emit("message", {
-        message: `Welcome ${username}`,
-        username: username,
-        id: `${socket.id}${Math.random()}`,
-        sodketID: socket.id,
-      });
-    });
-  });
 
   return (
     <div className="chat__footer">

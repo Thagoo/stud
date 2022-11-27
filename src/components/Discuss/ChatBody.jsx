@@ -28,6 +28,7 @@ const ChatBody = ({ username, messages, room, lastMessageRef }) => {
               <p className="sender__name">You</p>
               <div className="message__sender">
                 <p>{message.message}</p>
+                <p className="message_time">{message.time}</p>
               </div>
             </div>
           ) : (
@@ -35,6 +36,7 @@ const ChatBody = ({ username, messages, room, lastMessageRef }) => {
               <p>{message.username}</p>
               <div className="message__recipient">
                 <p>{message.message}</p>
+                <p className="message_time">{message.time}</p>
               </div>
             </div>
           )
