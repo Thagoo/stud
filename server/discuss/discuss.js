@@ -25,15 +25,12 @@ socketIO.on("connection", (socket) => {
     const { username, room } = data;
     socket.join(room);
     let time = Date.now();
-    socket.to(room).emit("receive", {
-      message: `${username} has joined the room`,
-      username: "BOT",
-      time,
-    });
-    socket.emit("receive", {
+
+    socket.emit("messageRes", {
       message: `Welcome ${username}`,
-      usename: "BOT",
-      time,
+      username: username,
+      id: `${socket.id}${Math.random()}`,
+      sodketID: socket.id,
     });
 
     chatRoom = room;
@@ -44,7 +41,7 @@ socketIO.on("connection", (socket) => {
 
     socket.on("message", (data) => {
       console.log(data.username, data.message);
-      socket.emit("messageRes", data);
+      socketIO.in(room).emit("messageRes", data);
     });
   });
 });

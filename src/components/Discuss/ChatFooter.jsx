@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Chat.css";
+import { Button } from "react-bootstrap";
 
 const ChatFooter = ({ username, socket, room }) => {
   const [message, setMessage] = useState("");
@@ -16,6 +17,18 @@ const ChatFooter = ({ username, socket, room }) => {
     }
     setMessage("");
   };
+
+  useEffect(() => {
+    socket.on("recieve", () => {
+      socket.emit("message", {
+        message: `Welcome ${username}`,
+        username: username,
+        id: `${socket.id}${Math.random()}`,
+        sodketID: socket.id,
+      });
+    });
+  });
+
   return (
     <div className="chat__footer">
       <form className="form" onSubmit={handleSendMessage}>
@@ -26,7 +39,7 @@ const ChatFooter = ({ username, socket, room }) => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button className="sendBtn">SEND</button>
+        <Button type="submit">SEND</Button>
       </form>
     </div>
   );
