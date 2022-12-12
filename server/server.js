@@ -10,7 +10,7 @@ app.use(cors());
 require("dotenv").config({ path: "./.env" });
 MONGODB_URL = process.env.MONGODB_URL;
 PORT = process.env.PORT;
-console.log(MONGODB_URL, PORT);
+NEWS_API_ID = process.env.NEWS_API_ID;
 
 mongoose.connect(
   MONGODB_URL,
@@ -81,6 +81,10 @@ app.post("/register", (req, res) => {
   });
   // res.send("register");
   //   console.log(req.body);
+});
+
+app.get("/envapi", async (req, res) => {
+  res.send(NEWS_API_ID);
 });
 
 app.listen(PORT, () => {
