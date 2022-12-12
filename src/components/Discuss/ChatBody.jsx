@@ -16,7 +16,7 @@ const ChatBody = ({ username, messages, room, lastMessageRef }) => {
     <>
       <header className="chat__mainHeader">
         <p>Discussion Room {room}</p>
-        <Button variant="secondary" onClick={handleLeaveChat}>
+        <Button variant="outline-secondary" onClick={handleLeaveChat}>
           LEAVE CHAT
         </Button>
       </header>

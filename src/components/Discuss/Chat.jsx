@@ -21,7 +21,7 @@ const Chat = ({ username, socket, room }) => {
 
   return (
     <div className="chat">
-      <ChatBar />
+      <ChatBar socket={socket} />
       <div className="chat__main">
         <ChatBody
           username={username}

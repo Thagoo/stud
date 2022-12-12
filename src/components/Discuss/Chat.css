@@ -132,7 +132,8 @@
     font-size: 15px;
   }
   .message__sender {
-    background-color: rgb(194, 243, 194);
+    color: aliceblue;
+    background-color: #6c757d;
     max-width: 300px;
     padding: 10px;
     border-radius: 10px;

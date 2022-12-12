@@ -3,7 +3,6 @@ const app = express();
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
-const { ConnectionClosedEvent } = require("mongodb");
 
 const http = createServer();
 
@@ -40,10 +39,10 @@ socketIO.on("connection", (socket) => {
 
     chatRoom = room;
     allUsers.push({ id: socket.id, username, room });
+    console.log(allUsers);
     chatRoomUsers = allUsers.filter((user) => user.room === room);
-    socket.to(room).emit("room_users", chatRoomUsers);
+    socketIO.to(room).emit("room_users", chatRoomUsers);
     socket.emit("room_users", chatRoomUsers);
-
     socket.on("message", (data) => {
       console.log(data.username, data.message);
       socketIO.in(room).emit("messageRes", data);
