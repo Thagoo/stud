@@ -16,7 +16,7 @@ let allUsers = [];
 
 const socketIO = new Server(http, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });

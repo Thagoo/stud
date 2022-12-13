@@ -6,6 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
+const bcrypt = require("bcrypt");
 
 require("dotenv").config({ path: "./.env" });
 MONGODB_URL = process.env.MONGODB_URL;
@@ -35,26 +36,29 @@ const userSchema = new mongoose.Schema({
 const User = new mongoose.model("User", userSchema);
 
 //Routes
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   const { uname, passwd } = req.body;
 
-  //check uname
-  User.findOne({ uname: uname }, (err, user) => {
-    if (user) {
-      //check password
-      if (passwd === user.passwd) {
-        res.send(uname);
-      } else {
-        res.send("password is incorrect");
-      }
-    } else {
-      res.send("user not found");
-    }
-  });
+  //check username
+  const user = await User.findOne({ uname: uname });
+  if (!user) {
+    return res.send("user not found");
+  }
+
+  // verify password with encrypted password
+  if (await bcrypt.compare(passwd, user.passwd)) {
+    res.send(uname);
+  } else {
+    res.send("password is incorrect");
+  }
 });
 
-app.post("/register", (req, res) => {
+app.post("/register", async (req, res) => {
   const { fname, lname, uname, course, sem, passwd } = req.body;
+
+  // Ecrypt password using bcrypt
+  const encryptedPassword = await bcrypt.hash(passwd, 10);
+  console.log(encryptedPassword);
 
   //check username
   User.findOne({ uname: uname }, (err, user) => {
@@ -68,7 +72,7 @@ app.post("/register", (req, res) => {
         uname,
         course,
         sem,
-        passwd,
+        passwd: encryptedPassword,
       });
       user.save((err) => {
         if (err) {

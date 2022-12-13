@@ -111,7 +111,7 @@ class Register extends React.Component {
         <div className="mb-3">
           <label htmlFor="passwd">Password</label>
           <input
-            type="text"
+            type="password"
             className="form-control"
             placeholder="Password"
             id="passwd"
@@ -122,7 +122,7 @@ class Register extends React.Component {
         <div className="mb-3">
           <label htmlFor="passwd">Confirm Password</label>
           <input
-            type="text"
+            type="password"
             className="form-control"
             placeholder="Confirm Password"
             id="cpasswd"
