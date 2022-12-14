@@ -30,14 +30,14 @@ function Home() {
         <Row>
           <Col lg={16}>
             <Row md={2} xs="auto">
-              {newsData.map((article) => (
-                <Col sm={2}>
+              {newsData.map((article, i) => (
+                <Col sm={2} key={i}>
                   <a
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Card hoverable>
+                    <Card hoverable="true">
                       <Card.Img variant="top" src={article.urlToImage} />
                       <Card.Body>
                         <Card.Title>{article.title}</Card.Title>
@@ -49,14 +49,14 @@ function Home() {
               ))}
             </Row>
             <Row md={2} xs="auto">
-              {newsData.map((article) => (
-                <Col sm={2}>
+              {newsData.map((article, j) => (
+                <Col sm={2} key={j}>
                   <a
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Card hoverable>
+                    <Card hoverable="true">
                       <Card.Img variant="top" src={article.image} />
                       <Card.Body>
                         <Card.Title>{article.title}</Card.Title>
