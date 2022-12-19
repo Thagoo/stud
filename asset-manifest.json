@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Thagoo/stud/static/css/main.e79a9349.css",
-    "main.js": "/Thagoo/stud/static/js/main.aaf58212.js",
+    "main.js": "/Thagoo/stud/static/js/main.0b37c453.js",
     "static/js/787.e2e4ebf8.chunk.js": "/Thagoo/stud/static/js/787.e2e4ebf8.chunk.js",
     "index.html": "/Thagoo/stud/index.html",
     "main.e79a9349.css.map": "/Thagoo/stud/static/css/main.e79a9349.css.map",
-    "main.aaf58212.js.map": "/Thagoo/stud/static/js/main.aaf58212.js.map",
+    "main.0b37c453.js.map": "/Thagoo/stud/static/js/main.0b37c453.js.map",
     "787.e2e4ebf8.chunk.js.map": "/Thagoo/stud/static/js/787.e2e4ebf8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e79a9349.css",
-    "static/js/main.aaf58212.js"
+    "static/js/main.0b37c453.js"
   ]
 }
