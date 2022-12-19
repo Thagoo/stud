@@ -1,12 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const discuss = require("./discuss/discuss");
+
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded());
 app.use(cors());
 const bcrypt = require("bcrypt");
+
+const router = express.Router();
 
 require("dotenv").config({ path: "./.env" });
 MONGODB_URL = process.env.MONGODB_URL;
@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
 const User = new mongoose.model("User", userSchema);
 
 //Routes
-app.post("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { uname, passwd } = req.body;
 
   //check username
@@ -53,7 +53,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   const { fname, lname, uname, course, sem, passwd } = req.body;
 
   // Ecrypt password using bcrypt
@@ -87,10 +87,8 @@ app.post("/register", async (req, res) => {
   //   console.log(req.body);
 });
 
-app.get("/envapi", async (req, res) => {
+router.get("/envapi", async (req, res) => {
   res.send(NEWS_API_ID);
 });
 
-app.listen(PORT, () => {
-  console.log("Server starting at 8000");
-});
+module.exports = router;

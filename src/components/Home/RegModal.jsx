@@ -11,20 +11,7 @@ function RegModal() {
 
   return (
     <>
-      <Modal show={show} animation={true}>
-        <Modal.Header>
-          <Modal.Title>Register</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Register />
-        </Modal.Body>
-        <Modal.Footer>
-          <p>already have an account?</p>
-          <LinkContainer to="/">
-            <Button variant="secondary">Login</Button>
-          </LinkContainer>
-        </Modal.Footer>
-      </Modal>
+      <Register />
     </>
   );
 }

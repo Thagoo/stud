@@ -16,7 +16,7 @@ function StudyMaterials() {
           Study Materials <br />
           <br />
         </h1>
-        <Tab.Container id="left-tabs-example" defaultActiveKey="bca">
+        <Tab.Container defaultActiveKey="bca">
           <Row>
             <Col sm={3}>
               <Nav variant="pills" className="flex-column">

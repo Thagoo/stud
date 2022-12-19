@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Login.css";
+import { Form, Button } from "react-bootstrap";
 
 const Login = () => {
   const [uname, setUname] = useState("");
   const [passwd, setPasswd] = useState("");
   const [user, setUser] = useState();
-  const [unameError, setUnameError] = useState("");
-  const [passwdError, setPasswdError] = useState("");
 
   // logout the user
   const handleLogout = () => {
@@ -22,7 +21,7 @@ const Login = () => {
     e.preventDefault();
     const user = { uname, passwd };
     // send the uname and password to the server
-    const response = await axios.post("http://localhost:8000/login", user);
+    const response = await axios.post("http://192.168.16.134:8000/login", user);
     // set the state of the user
     if (response.data == uname) {
       setUser(response.data);
@@ -30,12 +29,10 @@ const Login = () => {
       // store the user in localStorage
       localStorage.setItem("user", JSON.stringify(response.data));
     } else if (response.data == "user not found") {
-      setUnameError(true);
       //[TODO customize this]
       alert("User not found! Please register");
     } else {
       alert("Password is incorrect");
-      setPasswdError(true);
     }
   };
 
@@ -45,34 +42,29 @@ const Login = () => {
   useEffect(() => {});
   // if there's no user, show the login form
   return (
-    <form action="" onSubmit={handleSubmit}>
-      <div className="mb-3">
-        <label htmlFor="uname">User Name</label>
-        <input
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3">
+        <Form.Label>User Name</Form.Label>
+        <Form.Control
           type="text"
-          className={unameError ? "form-control invalid" : "form-control"}
           placeholder="User Name"
-          id="uname"
           onChange={({ target }) => setUname(target.value)}
         />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="passwd">Password</label>
-        <input
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
           type="password"
-          className={passwdError ? "form-control invalid" : "form-control"}
           placeholder="Password"
-          id="passwd"
           onChange={({ target }) => setPasswd(target.value)}
         />
-      </div>
+        <Form.Text muted>Forgot password? Don't remember.</Form.Text>
+      </Form.Group>
 
-      <div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </div>
-    </form>
+      <Button style={{ width: `100%` }} type="submit" variant="primary">
+        Submit
+      </Button>
+    </Form>
   );
 };
 

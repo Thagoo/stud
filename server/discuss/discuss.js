@@ -3,8 +3,12 @@ const app = express();
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
+const server = require("./../server");
 
 const http = createServer();
+
+const router = express.Router();
+app.use(server);
 
 let date = new Date();
 let time_h = date.getHours();
@@ -21,6 +25,7 @@ const socketIO = new Server(http, {
   },
 });
 
+router.io = socketIO;
 //Add this before the app.get() block
 socketIO.on("connection", (socket) => {
   console.log(`status: ${socket.id} user just connected!`);
@@ -50,6 +55,6 @@ socketIO.on("connection", (socket) => {
   });
 });
 
-http.listen("4000", () => {
-  console.log(`Server listening on 4000`);
+http.listen(8000, () => {
+  console.log("Server starting at 8000");
 });
