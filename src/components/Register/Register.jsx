@@ -24,10 +24,7 @@ class Register extends React.Component {
     if (passwd !== cpasswd) {
       alert("Password don't match");
     } else {
-      const response = await axios.post(
-        "https://localhost:8000/register",
-        this.state
-      );
+      const response = await axios.post("/register", this.state);
       if (response.data == "exist") {
         alert(uname + " already exist try different username");
       } else {

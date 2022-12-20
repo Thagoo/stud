@@ -1,18 +1,20 @@
 const express = require("express");
+const app = express();
+
 const cors = require("cors");
 const mongoose = require("mongoose");
-const discuss = require("./discuss/discuss");
-const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
+
+const { Server } = require("socket.io");
+const path = require("path");
+require("dotenv").config({ path: "./.env" });
 const bcrypt = require("bcrypt");
 
-require("dotenv").config({ path: "./.env" });
 MONGODB_URL = process.env.MONGODB_URL;
 PORT = process.env.PORT;
 NEWS_API_ID = process.env.NEWS_API_ID;
-
 mongoose.connect(
   MONGODB_URL,
   {
@@ -58,12 +60,10 @@ app.post("/register", async (req, res) => {
 
   // Ecrypt password using bcrypt
   const encryptedPassword = await bcrypt.hash(passwd, 10);
-  console.log(encryptedPassword);
 
   //check username
   User.findOne({ uname: uname }, (err, user) => {
     if (user) {
-      console.log(user);
       res.send("exist");
     } else {
       const user = new User({
@@ -83,14 +83,23 @@ app.post("/register", async (req, res) => {
       });
     }
   });
-  // res.send("register");
-  //   console.log(req.body);
 });
+app.use(express.static(path.join(__dirname, "build")));
 
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 app.get("/envapi", async (req, res) => {
   res.send(NEWS_API_ID);
 });
-
-app.listen(PORT, () => {
-  console.log("Server starting at 8000");
+const server = app.listen("8000", () => {
+  console.log(`Server listening on 8000`);
 });
+const server2 = require("http").createServer(server);
+const socketIO = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+require("./discuss/discuss")(socketIO);
