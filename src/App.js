@@ -22,7 +22,7 @@ function requireAuth() {
 
 function App() {
   const [room, setRoom] = useState("");
-  const socket = io.connect("http://localhost:4000/");
+  const socket = io.connect("http://localhost:8000/");
   return (
     <BrowserRouter>
       <Routes>
