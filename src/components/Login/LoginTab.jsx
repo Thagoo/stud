@@ -4,7 +4,7 @@ import { Modal } from "react-bootstrap/";
 import "reactjs-popup/dist/index.css";
 import { LinkContainer } from "react-router-bootstrap/";
 import { Button } from "react-bootstrap/";
-import Login from "../Login/Login";
+import Login from "./Login";
 import "./Home.css";
 
 function LogModal() {
@@ -25,11 +25,7 @@ function LogModal() {
         <Modal.Body>
           <Login />
         </Modal.Body>
-        <Modal.Footer>
-          <LinkContainer to="/register">
-            <Button variant="secondary">Register</Button>
-          </LinkContainer>
-        </Modal.Footer>
+        <Modal.Footer></Modal.Footer>
       </Modal>
     </>
   );

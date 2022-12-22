@@ -1,8 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/Home/Home";
-import LogModal from "./components/Home/LogModal";
-import RegModal from "./components/Home/RegModal";
+import LoginTab from "./components/Home/LoginTab";
 import React, { useState, useEffect } from "react";
 import StudyMaterials from "./components/StudyMaterials/StudyMaterialsHome/StudyMaterialsHome";
 import Discuss from "./components/Discuss/DiscussHome";
@@ -29,13 +28,13 @@ function App() {
         <Route
           exact
           path="/"
-          element={requireAuth() ? <Home /> : <LogModal />}
+          element={requireAuth() ? <Home /> : <LoginTab />}
         />
         <Route
           path="/studymaterials"
           element={requireAuth() ? <StudyMaterials /> : <LogModal />}
         />
-        <Route path="/register" element={<RegModal />} />
+
         <Route
           path="/discuss"
           element={
