@@ -13,7 +13,7 @@ class NavbarMenu extends React.Component {
       <div>
         <Navbar
           collapseOnSelect
-          expand="md"
+          expand="sm"
           className="navbar"
           bg="dark"
           variant="dark"

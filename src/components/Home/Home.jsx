@@ -5,14 +5,12 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import articles from "./news.json";
 
 function Home() {
   const [newsData, setNewsData] = useState([]);
   const services = async () => {
-    const NewsApi = await axios.get("http://localhost:8000/envapi");
-    const response = await axios.get(NewsApi.data);
-    setNewsData(response.data.articles);
-    console.log(newsData);
+    setNewsData(articles.articles);
   };
 
   useEffect(() => {
@@ -25,7 +23,6 @@ function Home() {
       <center>
         <h1>Latest News</h1>
       </center>
-
       <Container>
         <Row>
           <Col lg={16}>

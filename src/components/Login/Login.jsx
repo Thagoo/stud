@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
     const user = { uname, passwd };
     // send the uname and password to the server
-    const response = await axios.post("http://localhost:8000/login", user);
+    const response = await axios.post("/login", user);
     // set the state of the user
     if (response.data == uname) {
       setUser(response.data);
