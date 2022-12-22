@@ -12,12 +12,7 @@ function LogModal() {
       <Container style={{ marginTop: `2vw` }}>
         <Container className="auth-inner">
           <Tab.Container defaultActiveKey="login">
-            <Tabs
-              defaultActiveKey="login"
-              className="mb-3"
-              variant="pills"
-              justify
-            >
+            <Tabs defaultActiveKey="login" className="mb-3" justify>
               <Tab eventKey="login" title="Login">
                 <Login />
               </Tab>
