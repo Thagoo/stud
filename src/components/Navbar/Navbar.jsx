@@ -13,13 +13,14 @@ class NavbarMenu extends React.Component {
     return (
       <div>
         <Navbar
-          collapseOnSelect
-          expand="md"
-          className="navbar"
-          bg="dark"
-          variant="dark"
+          expand="sm"
+          bg="light"
+          className="fixed-top"
+          style={{
+            boxShadow: `0 2px 10px rgba(0,0,0,.25)`,
+          }}
         >
-          <Container fluid>
+          <Container>
             <Navbar.Brand href="/">
               <h1 className="stud-logo">STUD</h1>
             </Navbar.Brand>
@@ -44,7 +45,7 @@ class NavbarMenu extends React.Component {
                 </Nav.Link>
                 <Button
                   className="navBarItems"
-                  variant="outline-light"
+                  variant="outline-dark"
                   onClick={this.handleLogout}
                 >
                   Logout

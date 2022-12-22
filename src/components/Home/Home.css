@@ -1,5 +1,10 @@
-.modal-backdrop {
-    background-image: linear-gradient(to right, rgb(25, 0, 100), rgb(0, 225, 165));
-  }
+.home-bg {
+  margin-top: 12vh;
+  height: 80vh;
+  background-image: url("../../images/home-bg.png");
+}
 
-  
+.news-title {
+  padding: 5vh;
+  color: #253858;
+}
