@@ -13,7 +13,6 @@ function socket(socketIO) {
     socket.on("join_room", (data) => {
       const { username, room } = data;
       socket.join(room);
-
       socketIO.in(room).emit("messageRes", {
         message: `Welcome ${username}`,
         username: username,

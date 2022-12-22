@@ -1,26 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+
 import "./Chat.css";
-import { Button } from "react-bootstrap";
+import { Navbar, Button, Nav } from "react-bootstrap";
 
 const ChatBody = ({ username, messages, room, lastMessageRef }) => {
-  const navigate = useNavigate();
-
-  const handleLeaveChat = () => {
-    localStorage.removeItem("userName");
-    navigate("/discuss");
-    window.location.reload();
-  };
-
   return (
     <>
-      <header className="chat__mainHeader">
-        <p>Discussion Room {room}</p>
-        <Button variant="outline-secondary" onClick={handleLeaveChat}>
-          LEAVE CHAT
-        </Button>
-      </header>
-
       <div className="message__container">
         {messages.map((message) =>
           message.username === username ? (

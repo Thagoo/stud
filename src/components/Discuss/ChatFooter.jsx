@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Chat.css";
-import { Button } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 
 const ChatFooter = ({ username, socket, room }) => {
   const [message, setMessage] = useState("");
   const date = new Date();
   const Time = date.getHours() + ":" + date.getMinutes();
+  const [inputDisabled, setInputDisabled] = useState(false);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -20,20 +21,36 @@ const ChatFooter = ({ username, socket, room }) => {
     }
     setMessage("");
   };
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSendMessage();
+      setInputDisabled(true);
+    }
+  };
 
   return (
-    <div className="chat__footer">
-      <form className="form" onSubmit={handleSendMessage}>
-        <input
+    <>
+      <InputGroup className="mb-3">
+        <Form.Control
+          className="msg-box"
           type="text"
           placeholder="Write message"
-          className="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
-        <Button type="submit">SEND</Button>
-      </form>
-    </div>
+
+        <Button
+          onClick={handleSendMessage}
+          size="sm"
+          className="btn-send"
+          variant="outline-secondary"
+          type="submit"
+        >
+          SEND
+        </Button>
+      </InputGroup>
+    </>
   );
 };
 
