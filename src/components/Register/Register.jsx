@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 
 class Register extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class Register extends React.Component {
       alert("Password don't match");
     } else {
       const response = await axios.post(
-        "http://localhost:8000/register",
+        "https://localhost:8000/register",
         this.state
       );
       if (response.data == "exist") {
@@ -37,67 +37,61 @@ class Register extends React.Component {
   };
   render() {
     return (
-      <form action="" onSubmit={this.handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="fname">First Name</label>
-          <input
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>First Name</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
             placeholder="First Name"
-            id="fname"
             onChange={(e) => this.setState({ fname: e.target.value })}
             required
           />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="lname">Last Name</label>
-          <input
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
             placeholder="Last Name"
             id="lname"
             onChange={(e) => this.setState({ lname: e.target.value })}
           />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="uname">User Name</label>
-          <input
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="uname">User Name</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
             placeholder="User Name"
             id="uname"
             onChange={(e) => this.setState({ uname: e.target.value })}
             required
           />
-        </div>
-        <div className="mb-3">
-          <label>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>
             {" "}
             Select Course
             <br />
-          </label>
-          <select
+          </Form.Label>
+          <Form.Select
             id="course"
             value={this.state.value}
-            className="form-control"
             onChange={(e) => this.setState({ course: e.target.value })}
           >
             <option value=""> Select Course</option>
             <option value="bca"> Bachelor of Computer Applications</option>
             <option value="bcom"> Bachelor of Commerce</option>
             <option value="ba"> Bachelor of Arts</option>
-          </select>
-        </div>
-        <div className="mb-3">
-          <label>
+          </Form.Select>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>
             {" "}
             Select Semester
             <br />
-          </label>
-          <select
+          </Form.Label>
+          <Form.Select
             id="sem"
             value={this.state.value}
-            className="form-control"
             onChange={(e) => this.setState({ sem: e.target.value })}
           >
             <option value=""> Select Semester</option>
@@ -107,40 +101,38 @@ class Register extends React.Component {
             <option value="4"> 4th Semester</option>
             <option value="5"> 5th Semester</option>
             <option value="6"> 6th Semester</option>
-          </select>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="passwd">Password</label>
-          <input
+          </Form.Select>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="passwd">Password</Form.Label>
+          <Form.Control
             type="password"
-            className="form-control"
             placeholder="Password"
             id="passwd"
             onChange={(e) => this.setState({ passwd: e.target.value })}
             required
           />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="passwd">Confirm Password</label>
-          <input
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="passwd">Confirm Password</Form.Label>
+          <Form.Control
             type="password"
-            className="form-control"
             placeholder="Confirm Password"
             id="cpasswd"
             onChange={(e) => this.setState({ cpasswd: e.target.value })}
             required
           />
-        </div>
-        <div>
+        </Form.Group>
+        <Form.Group>
           <Button
-            type="submit"
             style={{ width: `100%` }}
-            variant="outline-primary"
+            type="submit"
+            className="outline-primary"
           >
             Submit
           </Button>
-        </div>
-      </form>
+        </Form.Group>
+      </Form>
     );
   }
 }
