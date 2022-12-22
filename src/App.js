@@ -21,7 +21,7 @@ function requireAuth() {
 
 function App() {
   const [room, setRoom] = useState("");
-  const socket = io.connect("");
+  const socket = io.connect();
   return (
     <BrowserRouter>
       <Routes>
