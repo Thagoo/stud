@@ -9,10 +9,9 @@ import { LinkContainer } from "react-router-bootstrap";
 function Home() {
   const [newsData, setNewsData] = useState([]);
   const services = async () => {
-    const NewsApi = await axios.get("http://localhost:8000/envapi");
+    const NewsApi = await axios.get("/envapi");
     const response = await axios.get(NewsApi.data);
     setNewsData(response.data.articles);
-    console.log(newsData);
   };
 
   useEffect(() => {
