@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 import "./Login.css";
 
 const Login = () => {
@@ -68,9 +69,13 @@ const Login = () => {
       </div>
 
       <div>
-        <button type="submit" className="btn btn-primary">
+        <Button
+          type="submit"
+          style={{ width: `100%` }}
+          variant="outline-primary"
+        >
           Submit
-        </button>
+        </Button>
       </div>
     </form>
   );

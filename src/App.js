@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/Home/Home";
-import LoginTab from "./components/Home/LoginTab";
+import LoginTab from "./components/Login/LoginTab";
 import React, { useState, useEffect } from "react";
 import StudyMaterials from "./components/StudyMaterials/StudyMaterialsHome/StudyMaterialsHome";
 import Discuss from "./components/Discuss/DiscussHome";
@@ -32,7 +32,7 @@ function App() {
         />
         <Route
           path="/studymaterials"
-          element={requireAuth() ? <StudyMaterials /> : <LogModal />}
+          element={requireAuth() ? <StudyMaterials /> : <LoginTab />}
         />
 
         <Route
@@ -46,7 +46,7 @@ function App() {
                 socket={socket} // Add this
               />
             ) : (
-              <LogModal />
+              <LoginTab />
             )
           }
         />
@@ -56,7 +56,7 @@ function App() {
             requireAuth() ? (
               <Chat username={loggedInUser} socket={socket} room={room} />
             ) : (
-              <LogModal />
+              <LoginTab />
             )
           }
         />

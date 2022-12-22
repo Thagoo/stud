@@ -1,32 +1,33 @@
 import React, { useState } from "react";
-import { Modal } from "react-bootstrap/";
-
-import "reactjs-popup/dist/index.css";
-import { LinkContainer } from "react-router-bootstrap/";
-import { Button } from "react-bootstrap/";
+import { Tabs, Tab, Container, TabContainer } from "react-bootstrap/";
 import Login from "./Login";
-import "./Home.css";
+import Register from "../Register/Register";
+import "./LoginTab.css";
 
 function LogModal() {
   const [show, setShow] = useState(true);
 
   return (
     <>
-      <Modal
-        show={show}
-        animation={true}
-        size="sm"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header>
-          <Modal.Title>Login</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Login />
-        </Modal.Body>
-        <Modal.Footer></Modal.Footer>
-      </Modal>
+      <Container style={{ marginTop: `2vw` }}>
+        <Container className="auth-inner">
+          <Tab.Container defaultActiveKey="login">
+            <Tabs
+              defaultActiveKey="login"
+              className="mb-3"
+              variant="pills"
+              justify
+            >
+              <Tab eventKey="login" title="Login">
+                <Login />
+              </Tab>
+              <Tab eventKey="register" title="Register">
+                <Register />
+              </Tab>
+            </Tabs>
+          </Tab.Container>
+        </Container>
+      </Container>
     </>
   );
 }
