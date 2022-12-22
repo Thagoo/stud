@@ -1,19 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { Modal, Container, Form, Button } from "react-bootstrap";
 import "./DiscussHome.css";
-import Navbar from "./../Navbar/Navbar.jsx";
 
 const Discuss = ({ username, room, setRoom, socket }) => {
-  const navigate = useNavigate(); // Add this
+  const navigate = useNavigate();
 
   const joinRoom = (e) => {
     e.preventDefault();
-    console.log(room);
     socket.emit("join_room", { username, room });
 
     if (room !== "" && username !== "") {
       navigate("/chat", { replace: true });
     }
+  };
+
+  const handleClose = () => {
+    window.location.href = "/";
   };
 
   return (
@@ -46,11 +48,16 @@ const Discuss = ({ username, room, setRoom, socket }) => {
                 </Form.Select>
               </Form.Group>
 
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" style={{ width: `100%` }}>
                 Join Room
               </Button>
             </Form>
           </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
         </Modal>
       </Container>
     </>
