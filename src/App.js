@@ -21,6 +21,7 @@ function requireAuth() {
 
 function App() {
   const [room, setRoom] = useState("");
+
   const socket = io.connect();
   return (
     <BrowserRouter>
@@ -28,28 +29,24 @@ function App() {
         <Route
           exact
           path="/"
-          element={requireAuth() ? <Home /> : <LoginTab />}
-        />
-        <Route
-          path="/studymaterials"
-          element={requireAuth() ? <StudyMaterials /> : <LoginTab />}
-        />
-
-        <Route
-          path="/discuss"
           element={
             requireAuth() ? (
-              <Discuss
-                username={loggedInUser} // Add this
-                room={room} // Add this
-                setRoom={setRoom} // Add this
-                socket={socket} // Add this
+              <Home
+                username={loggedInUser}
+                socket={socket}
+                room={room}
+                setRoom={setRoom}
               />
             ) : (
               <LoginTab />
             )
           }
         />
+        <Route
+          path="/studymaterials"
+          element={requireAuth() ? <StudyMaterials /> : <LoginTab />}
+        />
+
         <Route
           path="/chat"
           element={

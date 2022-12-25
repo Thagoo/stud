@@ -124,7 +124,7 @@ class Register extends React.Component {
           <Button
             style={{ width: `100%` }}
             type="submit"
-            variant="outline-primary"
+            variant="outline-secondary"
           >
             Submit
           </Button>

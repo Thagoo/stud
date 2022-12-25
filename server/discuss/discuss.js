@@ -13,14 +13,6 @@ function socket(socketIO) {
     socket.on("join_room", (data) => {
       const { username, room } = data;
       socket.join(room);
-      console.log("running");
-      socketIO.in(room).emit("messageRes", {
-        message: `Welcome ${username}`,
-        username: username,
-        id: `${socket.id}${Math.random()}`,
-        sodketID: socket.id,
-        time: time,
-      });
 
       chatRoom = room;
       allUsers.push({ id: socket.id, username, room });

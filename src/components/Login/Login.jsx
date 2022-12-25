@@ -61,7 +61,11 @@ const Login = () => {
         <Form.Text muted>Forgot password? Don't remember.</Form.Text>
       </Form.Group>
 
-      <Button style={{ width: `100%` }} type="submit" variant="outline-primary">
+      <Button
+        style={{ width: `100%` }}
+        type="submit"
+        variant="outline-secondary"
+      >
         Submit
       </Button>
     </Form>

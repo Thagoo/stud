@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../Navbar/Navbar";
+import NavbarHeader from "../../Navbar/Navbar";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
@@ -10,7 +10,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 function StudyMaterials() {
   return (
     <>
-      <Navbar />
+      <NavbarHeader />
       <Container>
         <h1 style={{ textAlign: `center` }}>
           Study Materials <br />
