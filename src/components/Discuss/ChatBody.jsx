@@ -33,6 +33,12 @@ const ChatBody = ({ username, messages, socket, room, lastMessageRef }) => {
               <Grid container>
                 <Grid item xs={12}>
                   <ListItemText
+                    secondary={
+                      message.username == username ? "You" : message.username
+                    }
+                    align={message.username == username ? "right" : "left"}
+                  ></ListItemText>
+                  <ListItemText
                     align={message.username == username ? "right" : "left"}
                     primary={message.message}
                   ></ListItemText>

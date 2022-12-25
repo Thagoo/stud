@@ -19,12 +19,13 @@ const ChatBar = ({ socket, username }) => {
     socket.on("room_users", (data) => {
       setUsers(data);
     });
+
     return () => socket.off("room_users");
   }, [socket]);
   return (
     <Grid item xs={3} className="chat-bar">
-      <List>
-        <ListItem button key="RemySharp">
+      <List className="chat-bar-user">
+        <ListItem button key="user">
           <ListItemIcon>
             <Avatar
               alt={username}
@@ -32,7 +33,10 @@ const ChatBar = ({ socket, username }) => {
             />
           </ListItemIcon>
           <ListItemText primary={username}></ListItemText>
+          <ListItemText secondary="You" align="right"></ListItemText>
         </ListItem>
+        <Divider />
+        <Divider />
       </List>
       <Divider />
       {users.map((user) =>
@@ -40,7 +44,7 @@ const ChatBar = ({ socket, username }) => {
           ""
         ) : (
           <List>
-            <ListItem button key="RemySharp">
+            <ListItem button key="user">
               <ListItemIcon>
                 <Avatar
                   alt="user"
