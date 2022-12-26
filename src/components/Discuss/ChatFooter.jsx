@@ -34,7 +34,7 @@ const ChatFooter = ({ username, socket, room }) => {
   return (
     <>
       <Grid container className="msg-input">
-        <Grid item xs={11}>
+        <Grid item xs={10}>
           <TextField
             id="outlined-basic-email"
             label="Type Something"
