@@ -10,7 +10,7 @@ import {
   ListItemIcon,
   Avatar,
   TextField,
-} from "@mui/material/";
+} from "@material-ui/core/";
 
 const ChatBar = ({ socket, username }) => {
   const [users, setUsers] = useState([]);
@@ -24,7 +24,7 @@ const ChatBar = ({ socket, username }) => {
   }, [socket]);
   return (
     <Grid item xs={3} className="chat-bar">
-      <List className="chat-bar-user">
+      <List>
         <ListItem button key="user">
           <ListItemIcon>
             <Avatar alt={username} src={username} />
@@ -32,16 +32,15 @@ const ChatBar = ({ socket, username }) => {
           <ListItemText primary={username}></ListItemText>
           <ListItemText secondary="You" align="right"></ListItemText>
         </ListItem>
-        <Divider variant="inset" />
-        <Divider variant="inset" />
+        <Divider />
+        <Divider />
       </List>
-
-      {users.map((user, i) =>
+      {users.map((user) =>
         user.username == username ? (
           ""
         ) : (
           <List>
-            <ListItem button key={i}>
+            <ListItem button key="user">
               <ListItemIcon>
                 <Avatar alt={user.username} src={user.username} />
               </ListItemIcon>
@@ -50,7 +49,6 @@ const ChatBar = ({ socket, username }) => {
               </ListItemText>
               <ListItemText secondary="online" align="right"></ListItemText>
             </ListItem>
-            <Divider variant="inset" />
           </List>
         )
       )}

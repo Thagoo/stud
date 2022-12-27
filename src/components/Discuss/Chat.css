@@ -3,32 +3,43 @@
   filter: invert(11%) sepia(32%) saturate(21%) hue-rotate(95deg) brightness(98%)
     contrast(84%);
 }
-
+.table {
+  height: auto;
+  min-width: auto;
+  padding-top: 15vh;
+}
 .headbg {
   background-color: #e0e0e0;
 }
-.chat-section {
-  height: 95vh;
-}
-.message-area {
-  height: 75vh;
-  overflow-y: auto;
-}
+
 .chat-bar {
   overflow-y: auto;
   height: 81vh;
-  border-right: 1px solid #e0e0e0;
+  border-right: 0.5px solid #e0e0e0;
 }
-.msg-input {
-  margin-left: 2vh;
-  border-top-color: #dedede;
-  border-top-style: solid;
-  border-width: 0.5px;
+.header-message {
+}
+.message-area {
+  height: 70vh;
+  overflow-y: auto;
+}
+.chat-section {
+  width: auto;
+  height: 81vh;
+  overflow-y: hidden;
+}
+
+.chat-footer {
+  padding-left: 2vh;
+  padding-right: 2vh;
 }
 
 @media only screen and (max-width: 768px) {
   .logo-header-chat {
     height: 6vh;
+  }
+  .chat-footer {
+    padding-right: 5vh;
   }
   .chat-bar {
     display: none;

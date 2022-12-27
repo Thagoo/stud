@@ -9,20 +9,32 @@ import { useNavigate } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { red } from "@material-ui/core/colors";
 import Switch from "@material-ui/core/Switch";
-
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 // MaterialUI
 import { Paper, Grid, Typography, Fab } from "@material-ui/core/";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./Chat.css";
-import { height } from "@mui/system";
+import LightModeIcon from "@mui/icons-material/LightMode";
+
 // Styling material components
 const useStyles = makeStyles((theme) => ({
   root: {
+    height: "100%",
+    overflowY: `hidden`,
+    paddingBottom: `4vh`,
     backgroundColor: theme.palette.background.default,
 
-    [theme.breakpoints.down("xs")]: {
-      paddingTop: theme.spacing(2),
-    },
+    [theme.breakpoints.down("xs")]: {},
+  },
+
+  media: {
+    height: 56,
+
+    paddingTop: "56.25%", // 16:9
+  },
+
+  avatar: {
+    backgroundColor: red[500],
   },
 }));
 const Chat = ({ toggleDark, settoggleDark, username, socket, room }) => {
@@ -55,6 +67,7 @@ const Chat = ({ toggleDark, settoggleDark, username, socket, room }) => {
     <>
       <div className={classes.root}>
         <Navbar
+          expand="sm"
           style={{
             boxShadow: `0 1px 60px rgba(0,0,0,.25)`,
           }}
@@ -67,13 +80,15 @@ const Chat = ({ toggleDark, settoggleDark, username, socket, room }) => {
                 </Navbar.Brand>
               </LinkContainer>
             </Nav>
-            <Switch
-              checked={toggleDark}
-              onChange={handleModeChange}
+
+            <Fab
+              style={{ marginRight: `2vh` }}
+              onClick={handleModeChange}
               name="toggleDark"
               color="default"
-            />
-
+            >
+              {toggleDark ? <DarkModeIcon /> : <LightModeIcon />}
+            </Fab>
             <Fab
               color="primary"
               className="leave-btn"
@@ -85,7 +100,7 @@ const Chat = ({ toggleDark, settoggleDark, username, socket, room }) => {
           </Container>
         </Navbar>
 
-        <Grid container component={Paper} className="chat-section">
+        <Grid container component={Paper} className={classes.root}>
           <ChatBar socket={socket} username={username}></ChatBar>
           <ChatBody
             username={username}
