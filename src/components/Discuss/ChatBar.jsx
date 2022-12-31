@@ -9,7 +9,6 @@ import {
   Divider,
   ListItemIcon,
   Avatar,
-  TextField,
 } from "@material-ui/core/";
 
 const ChatBar = ({ socket, username }) => {

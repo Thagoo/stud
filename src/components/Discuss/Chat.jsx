@@ -48,7 +48,7 @@ const Chat = ({ toggleDark, settoggleDark, username, socket, room }) => {
   };
 
   const handleLeaveChat = () => {
-    localStorage.removeItem("userName");
+    socket.emit("leave_room", { username, room });
     navigate("/");
   };
 
@@ -87,7 +87,7 @@ const Chat = ({ toggleDark, settoggleDark, username, socket, room }) => {
               name="toggleDark"
               color="default"
             >
-              {toggleDark ? <DarkModeIcon /> : <LightModeIcon />}
+              {toggleDark ? <LightModeIcon /> : <DarkModeIcon />}
             </Fab>
             <Fab
               color="primary"

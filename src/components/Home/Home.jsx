@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import articles from "./news.json";
 import Discuss from "./../Discuss/DiscussHome";
-import { PropaneSharp } from "@mui/icons-material";
 
 function Home(props) {
   const [show, setShow] = useState(false);
@@ -21,14 +20,12 @@ function Home(props) {
   };
 
   useEffect(() => {
-    console.log(show);
     services();
   }, []);
 
   return (
     <div>
-      <NavbarHeader handleShow={handleShow} />
-
+      <NavbarHeader handleShow={handleShow} username={props.username} />
       <Discuss
         show={show}
         username={props.username}
@@ -37,7 +34,12 @@ function Home(props) {
         socket={props.socket}
         handleClose={handleClose}
       />
+
       <div className="home-bg">
+        <center className="home-text">
+          <p id="title-text">Stud </p>
+          <p id="subtitle">A Portal For Students </p>
+        </center>
         <Container className="news-container">
           <center>
             <h1 className="news-title">Technology News</h1>
@@ -46,7 +48,6 @@ function Home(props) {
             {newsData.map((article, i) => (
               <Col sm={2} key={i}>
                 <a
-                  clasName="article-anch"
                   style={{ color: `#5d5d5d`, textDecoration: `none` }}
                   href={article.url}
                   target="_blank"
@@ -65,7 +66,6 @@ function Home(props) {
             {newsData.map((article, i) => (
               <Col sm={2} key={i}>
                 <a
-                  clasName="article-anch"
                   style={{ color: `#5d5d5d`, textDecoration: `none` }}
                   href={article.url}
                   target="_blank"

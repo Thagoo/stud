@@ -3,17 +3,14 @@ import "./Chat.css";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { Grid, TextField, Fab } from "@material-ui/core/";
 import SendIcon from "@material-ui/icons/Send";
-import { useRef } from "react";
 
 const ChatFooter = ({ username, socket, room }) => {
   const [message, setMessage] = useState("");
   const date = new Date();
   const Time = date.getHours() + ":" + date.getMinutes();
-  const inputRef = useRef(null);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    inputRef.current.blur();
     if (message && username) {
       socket.emit("message", {
         message: message,
@@ -39,7 +36,8 @@ const ChatFooter = ({ username, socket, room }) => {
             id="outlined-basic-email"
             label="Type Something"
             value={message}
-            ref={inputRef}
+            autoFocus={true}
+            onBlur={({ target }) => target.focus()}
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={(e) => handleKeyPress(e)}
             fullWidth
@@ -49,7 +47,9 @@ const ChatFooter = ({ username, socket, room }) => {
           <Fab
             color="primary"
             aria-label="add"
-            onClick={(e) => handleSendMessage(e)}
+            onClick={(e) => {
+              handleSendMessage(e);
+            }}
           >
             <SendIcon />
           </Fab>

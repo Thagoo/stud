@@ -1,10 +1,10 @@
 .login-bg {
-  padding-top: 12vh;
-  padding-bottom: 22vh;
-  background-color: #046380;
-  overflow: hidden;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  background-color: #0d6efd;
 }
 .auth-inner {
+  height: auto;
   width: 450px;
   background: #ffffff;
   box-shadow: 16px 14px 80px 80px rgba(34, 35, 58, 0.2);
@@ -17,10 +17,13 @@
 
 .logo-login {
   height: 15vh;
-  filter: invert(98%) sepia(98%) saturate(8%) hue-rotate(133deg)
-    brightness(102%) contrast(102%);
 }
 @media only screen and (max-width: 768px) {
+  .login-bg {
+    padding-top: 20%;
+    min-height: 50%;
+    padding-bottom: 100%;
+  }
   .auth-inner {
     height: auto;
     width: auto;

@@ -1,12 +1,24 @@
 import React from "react";
 import "./Navbar.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { Container, Nav, Navbar, Button } from "react-bootstrap/";
+import {
+  Container,
+  Nav,
+  Navbar,
+  OverlayTrigger,
+  Tooltip,
+  Offcanvas,
+} from "react-bootstrap/";
 import { LinkContainer } from "react-router-bootstrap";
-
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
+import QuestionAnswerTwoToneIcon from "@mui/icons-material/QuestionAnswerTwoTone";
+import AccountCircleTwoToneIcon from "@mui/icons-material/AccountCircleTwoTone";
 
 const NavbarHeader = (props) => {
+  const user = props.username;
+
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = "./";
@@ -18,8 +30,9 @@ const NavbarHeader = (props) => {
       <Navbar
         expand="sm"
         bg="light"
-        className="fixed-top"
+        className="fixed-top mb-1 "
         style={{
+          zIndex: `1040`,
           boxShadow: `0 2px 100px rgba(0,0,0,.25)`,
         }}
       >
@@ -30,34 +43,48 @@ const NavbarHeader = (props) => {
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <LinkContainer to="/studymaterials">
-                <Nav.Link to="/studymaterials" className="navBarItems">
-                  Study Materials
-                </Nav.Link>
-              </LinkContainer>
+          <Navbar.Collapse>
+            <Navbar.Offcanvas placement="end">
+              <Offcanvas.Header closeButton>
+                <LinkContainer to="/">
+                  <Offcanvas.Title>
+                    <img className="logo-header-main" src="stud-logo.svg" />
+                  </Offcanvas.Title>
+                </LinkContainer>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="me-auto">
+                  <LinkContainer to="/studymaterials">
+                    <Nav.Link>
+                      <MenuBookTwoToneIcon />
+                      Study Materials
+                    </Nav.Link>
+                  </LinkContainer>
 
-              <Nav.Link onClick={props.handleShow} lassName="navBarItems">
-                Discuss
-              </Nav.Link>
+                  <Nav.Link onClick={props.handleShow}>
+                    <QuestionAnswerTwoToneIcon />
+                    Chat
+                  </Nav.Link>
+                </Nav>
+                <Nav>
+                  <br />
 
-              <Nav.Link className="navBarItems" href="">
-                About
-              </Nav.Link>
-            </Nav>
-            <Nav>
-              <Nav.Link className="navBarItems" href="">
-                {localStorage.getItem("user").replace(/^"(.+)"$/, "$1")}
-              </Nav.Link>
-              <Button
-                className="navBarItems"
-                variant="outline-dark"
-                onClick={handleLogout}
-              >
-                Logout
-              </Button>
-            </Nav>
+                  <Nav.Link disabled>
+                    <AccountCircleTwoToneIcon />
+                    {user}
+                  </Nav.Link>
+                  <OverlayTrigger
+                    placement="bottom"
+                    overlay={<Tooltip>Signed in as @{user}</Tooltip>}
+                  >
+                    <Nav.Link onClick={handleLogout}>
+                      <LogoutIcon />
+                      Signout
+                    </Nav.Link>
+                  </OverlayTrigger>
+                </Nav>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
           </Navbar.Collapse>
         </Container>
       </Navbar>

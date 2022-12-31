@@ -1,20 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import ChatFooter from "./ChatFooter";
 import "./Chat.css";
-import { Alert, Navbar, Button, Nav } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import {
   Grid,
   List,
   ListItem,
   ListItemText,
   Divider,
+  Snackbar,
+  IconButton,
 } from "@material-ui/core/";
+import CloseButton from "@mui/icons-material/Close";
+import { useEffect } from "react";
 
 const ChatBody = ({ username, messages, socket, room, lastMessageRef }) => {
+  const [open, setOpen] = useState(false);
+  const [userleft, setUserleft] = useState("");
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const closeSnackBar = (
+    <IconButton
+      size="small"
+      aria-label="close"
+      color="inherit"
+      onClick={handleClose}
+    >
+      <CloseButton fontSize="small" />
+    </IconButton>
+  );
+
+  useEffect(() => {
+    socket.on("user_left", (data) => {
+      setUserleft(data.username);
+      setOpen(true);
+    });
+  });
   return (
     <>
       <Grid item md={9}>
         <List className="message-area">
+          <Snackbar
+            anchorOrigin={{ vertical: "center", horizontal: "center" }}
+            open={open}
+            autoHideDuration={2000}
+            onClose={handleClose}
+            message={userleft + " has left the chat"}
+            action={closeSnackBar}
+          />
           <Alert variant="dark">
             <Alert.Heading>
               Hey, nice to see you {username}, Welcome to Stud Chat.

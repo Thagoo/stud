@@ -29,6 +29,7 @@ class Register extends React.Component {
         alert(uname + " already exist try different username");
       } else {
         alert(uname + " Account Succesfully created please login");
+        window.href("/");
       }
     }
   };
@@ -124,7 +125,7 @@ class Register extends React.Component {
           <Button
             style={{ width: `100%` }}
             type="submit"
-            variant="outline-secondary"
+            variant="outline-primary"
           >
             Submit
           </Button>
