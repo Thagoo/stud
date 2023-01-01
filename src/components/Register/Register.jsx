@@ -29,6 +29,7 @@ class Register extends React.Component {
         alert(uname + " already exist try different username");
       } else {
         alert(uname + " Account Succesfully created please login");
+        window.href("/");
       }
     }
   };

@@ -1,16 +1,31 @@
 import React from "react";
-import Navbar from "../../Navbar/Navbar";
+import NavbarHeader from "../Navbar/Navbar";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import { Container, Tabs } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
+import { useState } from "react";
+import Discuss from "../Discuss/DiscussHome";
 
-function StudyMaterials() {
+function StudyMaterials(props) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
-      <Navbar />
+      <NavbarHeader handleShow={handleShow} username={props.username} />
+      <Discuss
+        show={show}
+        username={props.username}
+        room={props.room}
+        setRoom={props.setRoom}
+        socket={props.socket}
+        handleClose={handleClose}
+      />
       <Container>
         <h1 style={{ textAlign: `center` }}>
           Study Materials <br />
@@ -40,18 +55,10 @@ function StudyMaterials() {
                     className="mb-3"
                     fill
                   >
-                    <Tab eventKey="1" title="1st Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="2" title="2nd Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="3" title="3rd Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="4" title="4th Semester">
-                      <h1>Hello</h1>
-                    </Tab>
+                    <Tab eventKey="1" title="1st Semester"></Tab>
+                    <Tab eventKey="2" title="2nd Semester"></Tab>
+                    <Tab eventKey="3" title="3rd Semester"></Tab>
+                    <Tab eventKey="4" title="4th Semester"></Tab>
                     <Tab eventKey="5" title="5th Semester">
                       <h1 style={{ fontSize: `25px`, textAlign: `center` }}>
                         Question Papers
@@ -89,9 +96,7 @@ function StudyMaterials() {
                         </ListGroup.Item>
                       </ListGroup>
                     </Tab>
-                    <Tab eventKey="6" title="6th Semester">
-                      <h1>Hello</h1>
-                    </Tab>
+                    <Tab eventKey="6" title="6th Semester"></Tab>
                   </Tabs>
                 </Tab.Pane>
                 <Tab.Pane eventKey="bcom">
@@ -101,24 +106,12 @@ function StudyMaterials() {
                     className="mb-3"
                     fill
                   >
-                    <Tab eventKey="1" title="1st Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="2" title="2nd Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="3" title="3rd Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="4" title="4th Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="5" title="5th Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="6" title="6th Semester">
-                      <h1>Hello</h1>
-                    </Tab>
+                    <Tab eventKey="1" title="1st Semester"></Tab>
+                    <Tab eventKey="2" title="2nd Semester"></Tab>
+                    <Tab eventKey="3" title="3rd Semester"></Tab>
+                    <Tab eventKey="4" title="4th Semester"></Tab>
+                    <Tab eventKey="5" title="5th Semester"></Tab>
+                    <Tab eventKey="6" title="6th Semester"></Tab>
                   </Tabs>
                 </Tab.Pane>
                 <Tab.Pane eventKey="ba">
@@ -128,24 +121,12 @@ function StudyMaterials() {
                     className="mb-3"
                     fill
                   >
-                    <Tab eventKey="1" title="1st Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="2" title="2nd Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="3" title="3rd Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="4" title="4th Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="5" title="5th Semester">
-                      <h1>Hello</h1>
-                    </Tab>
-                    <Tab eventKey="6" title="6th Semester">
-                      <h1>Hello</h1>
-                    </Tab>
+                    <Tab eventKey="1" title="1st Semester"></Tab>
+                    <Tab eventKey="2" title="2nd Semester"></Tab>
+                    <Tab eventKey="3" title="3rd Semester"></Tab>
+                    <Tab eventKey="4" title="4th Semester"></Tab>
+                    <Tab eventKey="5" title="5th Semester"></Tab>
+                    <Tab eventKey="6" title="6th Semester"></Tab>
                   </Tabs>
                 </Tab.Pane>
               </Tab.Content>

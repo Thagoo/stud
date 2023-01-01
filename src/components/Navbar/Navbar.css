@@ -1,14 +1,25 @@
-.stud-logo {
-  border-style: groove;
-  border-width: 2px;
-  border-color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 25px;
+.logo-header-main {
+  filter: invert(52%) sepia(84%) saturate(4896%) hue-rotate(211deg)
+    brightness(104%) contrast(98%);
+
+  height: 8vh;
 }
-.sticky-nav {
-  position: sticky;
-  top: 0;
+a.nav-link {
+  color: #0d6efd;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: #0d6efd;
+}
+a.nav-link:hover,
+a.nav-link:focus {
+  color: #0d6efd;
+  background-color: #e9ecef;
+}
+.fixed-top {
+  font-family: "GoogleSansRegular";
+}
+@media only screen and (max-width: 768px) {
+  .logo-header-main {
+    height: 6vh;
+  }
 }
