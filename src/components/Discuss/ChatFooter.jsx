@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Chat.css";
 import { Button, Form, InputGroup } from "react-bootstrap";
+import { Grid, TextField, Fab } from "@material-ui/core/";
+import SendIcon from "@material-ui/icons/Send";
 
 const ChatFooter = ({ username, socket, room }) => {
   const [message, setMessage] = useState("");
   const date = new Date();
   const Time = date.getHours() + ":" + date.getMinutes();
-  const [inputDisabled, setInputDisabled] = useState(false);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -23,33 +24,37 @@ const ChatFooter = ({ username, socket, room }) => {
   };
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleSendMessage();
-      setInputDisabled(true);
+      handleSendMessage(e);
     }
   };
 
   return (
     <>
-      <InputGroup className="mb-3">
-        <Form.Control
-          className="msg-box"
-          type="text"
-          placeholder="Write message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyPress={handleKeyPress}
-        />
-
-        <Button
-          onClick={handleSendMessage}
-          size="sm"
-          className="btn-send"
-          variant="outline-secondary"
-          type="submit"
-        >
-          SEND
-        </Button>
-      </InputGroup>
+      <Grid container className="chat-footer">
+        <Grid item xs={11}>
+          <TextField
+            id="outlined-basic-email"
+            label="Type Something"
+            value={message}
+            autoFocus={true}
+            onBlur={({ target }) => target.focus()}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyPress={(e) => handleKeyPress(e)}
+            fullWidth
+          />
+        </Grid>
+        <Grid xs={1} align="right">
+          <Fab
+            color="primary"
+            aria-label="add"
+            onClick={(e) => {
+              handleSendMessage(e);
+            }}
+          >
+            <SendIcon />
+          </Fab>
+        </Grid>
+      </Grid>
     </>
   );
 };

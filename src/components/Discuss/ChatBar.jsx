@@ -1,29 +1,57 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import "./Chat.css";
+import {
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+  ListItemIcon,
+  Avatar,
+} from "@material-ui/core/";
 
-const ChatBar = ({ socket }) => {
+const ChatBar = ({ socket, username }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     socket.on("room_users", (data) => {
       setUsers(data);
     });
+
     return () => socket.off("room_users");
   }, [socket]);
   return (
-    <div className="chat__sidebar">
-      <h2>Open Chat</h2>
-
-      <div>
-        <h4 className="chat__header">ACTIVE USERS</h4>
-        <div className="chat__users"></div>
-
-        {users.map((user) => (
-          <p>{user.username}</p>
-        ))}
-      </div>
-    </div>
+    <Grid item xs={3} className="chat-bar">
+      <List>
+        <ListItem button key="user">
+          <ListItemIcon>
+            <Avatar alt={username} src={username} />
+          </ListItemIcon>
+          <ListItemText primary={username}></ListItemText>
+          <ListItemText secondary="You" align="right"></ListItemText>
+        </ListItem>
+        <Divider />
+        <Divider />
+      </List>
+      {users.map((user) =>
+        user.username == username ? (
+          ""
+        ) : (
+          <List>
+            <ListItem button key="user">
+              <ListItemIcon>
+                <Avatar alt={user.username} src={user.username} />
+              </ListItemIcon>
+              <ListItemText primary={user.username}>
+                {user.username}
+              </ListItemText>
+              <ListItemText secondary="online" align="right"></ListItemText>
+            </ListItem>
+          </List>
+        )
+      )}
+    </Grid>
   );
 };
 
