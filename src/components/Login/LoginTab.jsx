@@ -31,6 +31,23 @@ function LogModal() {
             </Tabs>
           </Tab.Container>
         </Container>
+        <Container className="login-footer">
+          <br />
+          <br />
+          <br />
+
+          <hr style={{ color: `white` }} />
+          <br />
+          <footer>
+            <img className="stud-logo-footer" src="stud-logo.svg" />
+            <br />
+            <br />
+
+            <p>STUD HUB IS A COLLEGE PROJECT</p>
+            <br />
+            <p>© 2023 copyrights</p>
+          </footer>
+        </Container>
       </Container>
     </>
   );

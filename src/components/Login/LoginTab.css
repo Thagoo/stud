@@ -18,6 +18,16 @@
 .logo-login {
   height: 15vh;
 }
+.login-footer {
+  font-size: 2vh;
+  font-weight: bold;
+  text-align: center;
+  color: hsla(248, 25%, 88%, 0.795);
+  width: 60vh;
+}
+.stud-logo-footer {
+  height: 6vh;
+}
 @media only screen and (max-width: 768px) {
   .login-bg {
     padding-top: 20%;
