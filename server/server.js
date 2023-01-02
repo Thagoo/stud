@@ -64,7 +64,7 @@ app.post("/register", async (req, res) => {
   //check username
   User.findOne({ uname: uname }, (err, user) => {
     if (user) {
-      res.send("exist");
+      res.status(400).send("username_exist");
     } else {
       const user = new User({
         fname,
@@ -78,7 +78,7 @@ app.post("/register", async (req, res) => {
         if (err) {
           res.send(err);
         } else {
-          res.send({ status: "Account has been created!! Please Login" });
+          res.send({ status: "Account has been created" });
         }
       });
     }
