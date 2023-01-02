@@ -44,14 +44,14 @@ app.post("/login", async (req, res) => {
   //check username
   const user = await User.findOne({ uname: uname });
   if (!user) {
-    return res.send("user not found");
+    return res.status(400).send("user not found");
   }
 
   // verify password with encrypted password
   if (await bcrypt.compare(passwd, user.passwd)) {
     res.send(uname);
   } else {
-    res.send("password is incorrect");
+    res.status(400).send("password is incorrect");
   }
 });
 

@@ -1,70 +1,102 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Login.css";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, InputGroup } from "react-bootstrap";
+import { Formik } from "formik";
+import * as yup from "yup";
 
 const Login = () => {
-  const [uname, setUname] = useState("");
-  const [passwd, setPasswd] = useState("");
-  const [user, setUser] = useState();
+  const loginSchema = yup.object().shape({
+    uname: yup.string().required("Username is required"),
+    passwd: yup.string().required("Password is required"),
+  });
 
   // logout the user
   const handleLogout = () => {
-    setUser({});
-    setUname("");
-    setPasswd("");
     localStorage.clear();
   };
 
   // login the user
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const user = { uname, passwd };
+  const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     // send the uname and password to the server
-    const response = await axios.post("/login", user);
-    // set the state of the user
-    if (response.data == uname) {
-      setUser(response.data);
-      console.log(response.data);
-      // store the user in localStorage
-      localStorage.setItem("user", JSON.stringify(response.data));
-    } else if (response.data == "user not found") {
-      //[TODO customize this]
-      alert("User not found! Please register");
-    } else {
-      alert("Password is incorrect");
-    }
+    await axios
+      .post("/login", values)
+      .then((response) => {
+        setSubmitting(false);
+        localStorage.setItem("user", JSON.stringify(response.data));
+        window.location.reload();
+      })
+      .catch((error) => {
+        setErrors({
+          uname: "Invalid Username or Password",
+          passwd: "Invalid Username or Password",
+        });
+        setSubmitting(false);
+      });
   };
 
-  if (user) {
-    window.location.href = "./";
-  }
-  useEffect(() => {});
-  // if there's no user, show the login form
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3">
-        <Form.Label>User Name</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="User Name"
-          onChange={({ target }) => setUname(target.value)}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          onChange={({ target }) => setPasswd(target.value)}
-        />
-        <Form.Text muted>Forgot password? Don't remember.</Form.Text>
-      </Form.Group>
+    <Formik
+      validationSchema={loginSchema}
+      onSubmit={handleSubmit}
+      initialValues={{
+        uname: "",
+        passwd: "",
+      }}
+    >
+      {({
+        handleSubmit,
+        handleChange,
+        handleBlur,
+        values,
+        touched,
+        isValid,
+        errors,
+      }) => (
+        <Form noValidate onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="validationFormik101">
+            <Form.Label>User Name</Form.Label>
+            <InputGroup>
+              <InputGroup.Text>@</InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder="User Name"
+                name="uname"
+                value={values.uname}
+                onChange={handleChange}
+                isValid={touched.uname && !errors.uname}
+                isInvalid={!!errors.uname}
+              />
+            </InputGroup>
+            <Form.Control.Feedback type="invalid">
+              {errors.uname}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              name="passwd"
+              value={values.passwd}
+              onChange={handleChange}
+              isValid={touched.passwd && !errors.passwd}
+              isInvalid={!!errors.passwd}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.passwd}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-      <Button style={{ width: `100%` }} type="submit" variant="outline-primary">
-        Submit
-      </Button>
-    </Form>
+          <Button
+            style={{ width: `100%` }}
+            type="submit"
+            variant="outline-primary"
+          >
+            Submit
+          </Button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
